@@ -1873,10 +1873,18 @@ syntax_error_report_fn(struct D_Parser *ap) {
     z = (z->sns.v && z->sns.v[0]->zns.v) ? z->sns.v[0]->zns.v[0] : 0;
   if (z && z->pn->parse_node.start_loc.s != z->pn->parse_node.end)
     after = dup_str(z->pn->parse_node.start_loc.s, z->pn->parse_node.end);
+// make error format compatible with VS click and goto error
+#ifdef _MSC_VER
+  if (after)
+	  fprintf(stderr, "%s(%d): syntax error after '%s'\n", fn, p->user.loc.line, after);
+  else
+	  fprintf(stderr, "%s(%d): syntax error\n", fn, p->user.loc.line);
+#else
   if (after)
     fprintf(stderr, "%s:%d: syntax error after '%s'\n", fn, p->user.loc.line, after);
   else
     fprintf(stderr, "%s:%d: syntax error\n", fn, p->user.loc.line);
+#endif
   if (after)
     FREE(after);
   FREE(fn);

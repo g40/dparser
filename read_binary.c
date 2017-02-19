@@ -29,25 +29,25 @@ read_binary_tables_internal(FILE *fp, unsigned char *str,
 
   for (i=0; i<tables.n_relocs; i++) {
     intptr_t offset;
-    void **ptr;
+	intptr_t** ptr;
     intptr_t *intptr;
-    read_chk((void*)&offset, sizeof(intptr_t), 1, fp, &str);
+    read_chk((intptr_t*)&offset, sizeof(intptr_t), 1, fp, &str);
     intptr = (intptr_t*)(tables_buf+offset);
-    ptr = (void**)intptr;
+    ptr = (intptr_t**)intptr;
     if (*intptr == -1) {
-      *ptr = (void*)0;
+      *ptr = (intptr_t*)0;
     } else if (*intptr == -2) {
-      *ptr = (void*)spec_code;
+      *ptr = (intptr_t*)spec_code;
     } else if (*intptr == -3) {
-      *ptr = (void*)final_code;
+      *ptr = (intptr_t*)final_code;
     } else {
       *ptr += (intptr_t)tables_buf;
     }
   }
   for (i=0; i<tables.n_strings; i++) {
     intptr_t offset;
-    read_chk((void*)&offset, sizeof(intptr_t), 1, fp, &str);
-    *(void**)(tables_buf+offset) += (intptr_t)strings_buf;
+    read_chk((intptr_t*)&offset, sizeof(intptr_t), 1, fp, &str);
+    *(intptr_t**)(tables_buf+offset) += (intptr_t)strings_buf;
   }
   if (fp)
     fclose(fp);

@@ -4,6 +4,12 @@
 #ifndef _d_H_
 #define _d_H_
 
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+// signed/unsigned comparison. lots of these
+#pragma warning( disable : 4018 )  
+#endif
+
 #define __USE_MINGW_ANSI_STDIO 1
 #ifdef MEMWATCH
 #define MEMWATCH_STDIO 1
@@ -19,16 +25,24 @@
 #endif
 #include <limits.h>
 #include <sys/types.h>
+#ifndef _MSC_VER
 #ifndef __MINGW32__
 #include <sys/mman.h>
 #include <sys/uio.h>
 #endif
 #include <unistd.h>
+#endif
 #include <fcntl.h>
-#include <time.h>
-#include <sys/time.h>
 #include <sys/stat.h>
+#include <time.h>
+#ifdef _MSC_VER
+#include <stdint.h>
+#include <time.h>
+#include <io.h>
+#else
+#include <sys/time.h>
 #include <dirent.h>
+#endif
 #include <ctype.h>
 #include <string.h>
 
@@ -56,7 +70,16 @@
 #endif
 #endif
 
-// enough already with the signed/unsiged char issues
+// grr, MSFT, grr.
+#ifdef _MSC_VER
+#define strncasecmp _strnicmp
+#define snprintf _snprintf
+#define open _open
+#define read _read
+#define close _close
+#endif
+
+// enough already with the signed/unsigned char issues
 #define isspace_(_c) isspace((unsigned char)(_c))
 #define isdigit_(_c) isdigit((unsigned char)(_c))
 #define isxdigit_(_c) isxdigit((unsigned char)(_c))

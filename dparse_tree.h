@@ -22,6 +22,10 @@
 #ifndef _parsetree_H_
 #define _parsetree_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "dparse.h"
 
 
@@ -44,5 +48,9 @@ print_node_default(int depth, char *token_name, char *token_value, void *client_
 
 void 
 print_node_parenthesised(int depth, char *token_name, char *token_value, void *client_data);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

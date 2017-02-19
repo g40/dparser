@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="arg.c" />
+    <ClCompile Include="dparse_tree.c" />
+    <ClCompile Include="driver_parsetree.c" />
+    <ClCompile Include="gram.c" />
+    <ClCompile Include="grammar.g.c" />
+    <ClCompile Include="lex.c" />
+    <ClCompile Include="lr.c" />
+    <ClCompile Include="make_dparser.c" />
+    <ClCompile Include="mkdparse.c" />
+    <ClCompile Include="my.c" />
+    <ClCompile Include="parse.c" />
+    <ClCompile Include="read_binary.c" />
+    <ClCompile Include="sample_parser.c" />
+    <ClCompile Include="scan.c" />
+    <ClCompile Include="symtab.c" />
+    <ClCompile Include="test_parser.c" />
+    <ClCompile Include="util.c" />
+    <ClCompile Include="version.c" />
+    <ClCompile Include="write_tables.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="arg.h" />
+    <ClInclude Include="d.h" />
+    <ClInclude Include="dparse.h" />
+    <ClInclude Include="dparse_tables.h" />
+    <ClInclude Include="dparse_tree.h" />
+    <ClInclude Include="dsymtab.h" />
+    <ClInclude Include="gram.h" />
+    <ClInclude Include="gramgram.h" />
+    <ClInclude Include="lex.h" />
+    <ClInclude Include="lr.h" />
+    <ClInclude Include="mkdparse.h" />
+    <ClInclude Include="parse.h" />
+    <ClInclude Include="read_binary.h" />
+    <ClInclude Include="scan.h" />
+    <ClInclude Include="util.h" />
+    <ClInclude Include="write_tables.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="linux">
+      <UniqueIdentifier>{9ae82dfa-a98a-47da-98c8-4630b556219c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile">
+      <Filter>linux</Filter>
+    </None>
+    <None Include=".gitignore">
+      <Filter>linux</Filter>
+    </None>
+  </ItemGroup>
+</Project>
